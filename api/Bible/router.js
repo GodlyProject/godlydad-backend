@@ -1,10 +1,12 @@
 const express = require('express')
-
+const Bible = require('./model')
+const {json} = require("express");
 const router = express.Router()
 
 router.get('/', (req, res, next) => {
     try {
-        res.json('GET all is Working');
+        const bibleVerses = Bible.getAll()
+        res.status(200).json(bibleVerses)
     } catch (err) {
         next(err);
     }

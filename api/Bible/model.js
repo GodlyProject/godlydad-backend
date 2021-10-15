@@ -1,9 +1,12 @@
+const db = require('../../data/db-config')
 
 const getAll=()=>{
-    return 'getAll'
+    return db('bible')
 }
-
-const getById = () =>{
+const findBy = (filter)=>{
+    return 'findBy'
+}
+const getById = (bible_id) =>{
     return 'getById'
 }
 

@@ -1,9 +1,15 @@
 const express = require('express')
+const cors = require('cors')
+const morgan = require('morgan')
+const { logger } = require('./Bible/middleware')
 const BibleRouter = require('./Bible/router')
 const server = express()
 
 server.use(express.json())
-server.use('/api/quotes', BibleRouter)
+server.use(cors())
+server.use(logger)
+server.use(morgan(`dev`))
+server.use('/api/bible', BibleRouter)
 
 //***********************500 error middleware***********//
 //eslint-disable-next-line
