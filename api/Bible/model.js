@@ -3,12 +3,29 @@ const db = require('../../data/db-config')
 const getAll=()=>{
     return db('bible')
 }
-const findBy = (filter)=>{
-    return 'findBy'
+const findByBook = (book)=>{
+    return db('bible')
+        .select('*')
+        .where(book)
+        .orderBy('chapter')
 }
-const getById = (bible_id) =>{
-    return 'getById'
+const findByBookChapter =(book, chapter)=>{
+    return db('bible')
+        .where(book, chapter)
+        .orderBy('verse')
 }
+const findByChapterVerse=(book, chapter, verse)=>{
+    return db('bible')
+        .where(book, chapter, verse)
+        .orderBy('verse')
+}
+// select *
+// from bible
+// where book='Genesis' and chapter=2 and verse=1
+
+// const getById = (bible_id) =>{
+//     return 'getById'
+// }
 
 const add = () =>{
     return 'add'
@@ -20,7 +37,9 @@ const edit = () =>{
 
 module.exports={
     getAll,
-    getById,
+    findByBook,
+    findByBookChapter,
+    findByChapterVerse,
     add,
     edit
 }
