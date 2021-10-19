@@ -19,16 +19,17 @@ const findByChapterVerse=(book, chapter, verse)=>{
         .where(book, chapter, verse)
         .orderBy('verse')
 }
-// select *
-// from bible
-// where book='Genesis' and chapter=2 and verse=1
 
-// const getById = (bible_id) =>{
-//     return 'getById'
-// }
+const getById = (bible_id) =>{
+    return db('bible')
+        .where('bible_id', bible_id)
+        .first();
+}
 
-const add = () =>{
-    return 'add'
+const add = async (newVerse) =>{
+    const [bible_id] = await db('bible')
+        .insert(newVerse, 'bible_id')
+    return getById(bible_id)
 }
 
 const edit = () =>{
